@@ -4,7 +4,6 @@
 from fastapi import FastAPI,status, Body, HTTPException, Path
 from typing import Annotated
 from pydantic import BaseModel
-from typing import List
 
 # Создано приложение(объект) FastAPI
 app = FastAPI()
@@ -17,7 +16,6 @@ class User(BaseModel):
     id: int
     username: str
     age: int
-
 
 # get запрос по маршруту '/users', который возвращает список users
 @app.get('/users')
@@ -63,7 +61,6 @@ async def put_user(user_id: Annotated[int, Path(description='Введите ID',
             return users
     # исключение в случае отсутствия пользователя с введенным id
     raise HTTPException(status_code=404, detail="Пользователь не найден")
-
 
 # delete запрос по маршруту '/user/{user_id}'
 # Удаляет пользователя, если пользователь с таким user_id есть в списке users и возвращает его.
